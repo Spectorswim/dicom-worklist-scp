@@ -1,0 +1,35 @@
+# Visual Studio files
+.vs/
+*.sln
+*.vcxproj*
+*.user
+*.log
+*.obj
+*.exe
+*.pdb
+*.ipch
+*.idb
+*.ilk
+*.cache
+
+# CMake and build folders
+CMakeFiles/
+CMakeCache.txt
+build/
+out/
+bin/
+lib/
+*.o
+
+# DCMTK binaries
+dcmtk-install/
+*.dcm
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*.old
+*.tmp
