@@ -46,10 +46,18 @@ private:
     // Maintains current server status and request metrics.
     struct SCPStatus
     {
+        // Indicates whether the SCP server is currently running and accepting associations
         bool isRunning_;
+
+        // Tracks the total number of received DIMSE commands (e.g., C-FIND)
         int requestCount_;
+
+        // Human-readable description of the current server state (e.g., "Idle", "Listening")
         std::string statusText_;
+
+        // Aggregated error log with timestamps, reset after each ToString() call
         std::string lastErrors_;
+
 
         SCPStatus(bool isRunning = false, int requestCount = 0, std::string statusText = "Idle", std::string lastErrors = "");
         std::string ToString();
@@ -74,9 +82,15 @@ private:
     {
         struct Item
         {
+            // Pointer to the actual DICOM dataset associated with this worklist item
             std::shared_ptr<DcmDataset> dataset_;
+
+            // Filename used to persist this dataset on disk
             std::string fileName_;
+
+            // Flag indicating whether this dataset has been modified and requires saving
             bool dirty_;
+
             Item(std::shared_ptr<DcmDataset> dataset, std::string fileName, bool dirty);
         };
 
@@ -101,10 +115,18 @@ private:
         int getFreeIndex();
     };
 
+    // Synchronization primitive to ensure thread-safe access to shared state
     mutable std::mutex mutex_;
+
+    // Path to the template DICOM file used when creating new worklist entries
     std::string templateFile_;
+
+    // Server status tracker that logs state, number of processed requests, and error messages
     mutable SCPStatus serverStatus_;
+
+    // Internal container for managing all loaded and active worklist datasets
     Worklist datasets_;
+
 };
 
 

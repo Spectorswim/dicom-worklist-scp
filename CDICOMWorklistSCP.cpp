@@ -13,6 +13,7 @@
 // ======================================== DICOMWorklistSCP Implementation ======================================
 // ===============================================================================================================
 
+
 // Constructor for the DICOM Worklist SCP server.
 // Initializes server status and ensures the worklist folder exists.
 // Also triggers dataset loading from disk to prepare in-memory cache.
@@ -51,7 +52,6 @@ bool DICOMWorklistSCP::setTemplateFile(const std::string& fileName)
     templateFile_ = fileName;
     return std::filesystem::exists(templateFile_);
 }
-
 
 // ---------------------------------------------- Dataset management ---------------------------------------------
 
@@ -359,7 +359,6 @@ DICOMWorklistSCP::ScopedStatus::~ScopedStatus()
 
 // ---------------------------------------------- Dataset management ---------------------------------------------
 
-
 // Loads all DICOM dataset files from the configured data folder into memory.
 // Each valid file is parsed into a DcmDataset, wrapped into an Item object,
 // assigned a unique index, and inserted into the internal worklist map.
@@ -578,8 +577,6 @@ bool DICOMWorklistSCP::Worklist::saveDirtyDatasetsInFile(SCPStatus& serverStatus
     return success;
 }
 
-
-
 // ----------------------------------------------- DIMSE Handling ------------------------------------------------
 
 // Handles incoming DIMSE commands from the DICOM network association.
@@ -619,7 +616,6 @@ OFCondition DICOMWorklistSCP::handleIncomingCommand(
 
     return DcmSCP::handleIncomingCommand(incomingMsg, presInfo);
 }
-
 
 // ------------------------------------------- Index & Naming Helpers --------------------------------------------
 
